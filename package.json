@@ -1,14 +1,14 @@
 {
-  "name": "fakenewscentral",
+  "name": "propagandamachine",
   "version": "0.1.0",
   "description": "A fake news generator powered by AI.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZombieNW/fakenewscentral.git"
+    "url": "git+https://github.com/ZombieNW/propagandamachine.git"
   },
   "keywords": [
     "news",
@@ -19,7 +19,11 @@
   "author": "ZombieNW",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ZombieNW/fakenewscentral/issues"
+    "url": "https://github.com/ZombieNW/propagandamachine/issues"
   },
-  "homepage": "https://github.com/ZombieNW/fakenewscentral#readme"
+  "homepage": "https://github.com/ZombieNW/propagandamachine#readme",
+  "dependencies": {
+    "@llama-node/llama-cpp": "^0.1.6",
+    "llama-node": "^0.1.6"
+  }
 }
