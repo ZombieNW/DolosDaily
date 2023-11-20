@@ -61,11 +61,11 @@ const run = async () => {
     var articleSplit = currentOutput.split('\n\n');
 
     //Get the title of the article
-    const articleTitle = articleSplit[0].replace("\n", "").replace("\"", "");
+    const articleTitle = articleSplit[0].replace("\n", "").replace("\"", "").replace("\\\"", "");
     const dirSafeTitle = makeDirectorySafeString(articleTitle);
 
     //Prep article content
-    var articleContent = currentOutput.replace("<end>", "").replace("Article:\n", "").replace(articleSplit[0], "").replace("\n\n\n", "");
+    var articleContent = currentOutput.replace("<end>", "").replace("Article:\n", "").replace(articleSplit[0], "").replace("John", getRandomItemFromFile("src/firstNames.json")).replace("Jane", getRandomItemFromFile("src/firstNames.json")).replace("Smith", getRandomItemFromFile("src/lastNames.json")).replace("Doe", getRandomItemFromFile("src/lastNames.json")).trim();
 
     //Store article to markdown
     storeVariableInSubdirectory(articleContent, dirSafeTitle, 'article.md');
