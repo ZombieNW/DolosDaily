@@ -24,6 +24,8 @@
   "homepage": "https://github.com/ZombieNW/propagandamachine#readme",
   "dependencies": {
     "@llama-node/llama-cpp": "^0.1.6",
+    "@sl-code-lords/image-library": "^1.0.0",
+    "compromise": "^14.10.1",
     "llama-node": "^0.1.6"
   }
 }
