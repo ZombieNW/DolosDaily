@@ -1,82 +1,118 @@
 //Libs
-import * as lib from '../lib/lib.mjs';
-import fs from "fs";
-import path from "path";
-import { LLM } from "llama-node";
-import { LLamaCpp } from "llama-node/dist/llm/llama-cpp.js";
-const llama = new LLM(LLamaCpp);
-const model = path.resolve(process.cwd(), "models/airoboros-13b-gpt4.ggmlv3.q4_0.bin");
+import express from 'express';
+import markdownIt from 'markdown-it';
+import path from 'path';
+import fs from 'fs';
+import livereload from 'livereload';
+import connectLiveReload from 'connect-livereload';
+import cors from 'cors';
+import { promises as fsPromises } from 'fs';
+import ejs from 'ejs';
+import * as generator from '../generator/index.mjs';
 
-const run = async () => {
-    //Setup llama
-    await llama.load({
-        modelPath: model,
-        enableLogging: false,
-        nCtx: 1024,
-        seed: 0,
-        f16Kv: false,
-        logitsAll: false,
-        vocabOnly: false,
-        useMlock: false,
-        embedding: false,
-        useMmap: true,
-        nGpuLayers: 0
-    });
+//Important constants
+const app = express();
+const port = 3000;
+const articlesFolder = path.join(new URL('.', import.meta.url).pathname.slice(1), '../articles');
+const md = new markdownIt();
 
-    //Prepare article prompt
-    const randomTopicObject = lib.getRandomItemFromFile("src/topics.json");
+//Express middleware and settings
+app.set('view engine', 'ejs');
+app.use(cors());
+app.use(connectLiveReload());
+app.use(express.static('public'));
+app.set('views', path.join(new URL('.', import.meta.url).pathname.slice(1), '../views'));
 
-    //Generate article
-    var generatedArticle = await generateWithLLM(`
-    Generate me a totally random fake news parody article that sounds really concerning and would make people wanna click. 
-    Do not include fake news in the title.
-    Make the title the first line of text and put the article after that.
-    Make it about this topic:
-    ${randomTopicObject.topic}
+//Livereload
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
-    Modern Context in case its helpful for the topic:
-    The year is currently 2023.
-    The current president is Mr. Joe Biden and the vice president is Ms. Kamala Harris.
-    Use realistic fake names.
-    Use a variety of sources not just ones from New York and California.
+//Routes
+app.get('/', async (req, res) => {
+    try {
+        const articles = [];
+        const articlesDir = path.join(new URL('.', import.meta.url).pathname.slice(1), '../articles');
+        const files = await fsPromises.readdir(articlesDir);
 
-    Title:`);
+        for (const file of files) {
+            const dirPath = path.join(articlesDir, file);
+            const stat = await fsPromises.stat(dirPath);
 
-    //Get the title of the article
-    const articleSplit = generatedArticle.split('\n\n');//Split by 2 newlines
-    const articleTitle = articleSplit[0].replaceAll("\n", "").replaceAll("\"", "").replaceAll("\\\"", "").trim();//Filter out the title
-    const dirSafeTitle = lib.makeDirectorySafeString(articleTitle);//Generate a directory safe title for the article
+            if (stat.isDirectory()) {
+                const jsonPath = path.join(dirPath, 'articledata.json');
 
-    //Prepare and store article content
-    const articleContent = generatedArticle.replaceAll("<end>", "").replaceAll("Article:\n", "").replaceAll(articleSplit[0], "").replaceAll("John", lib.getRandomItemFromFile("src/firstNames.json")).replaceAll("Jane", lib.getRandomItemFromFile("src/firstNames.json")).replaceAll("Smith", lib.getRandomItemFromFile("src/lastNames.json")).replaceAll("Doe", lib.getRandomItemFromFile("src/lastNames.json")).trim();
-    lib.storeVariableInSubdirectory(articleContent, dirSafeTitle, 'article.md');
+                try {
+                const articleContent = await fsPromises.readFile(jsonPath, { encoding: 'utf-8' });
+                const articleObject = JSON.parse(articleContent);
+                articles.push({ directory: file, data: articleObject });
+                } catch (readFileError) {
+                // Handle error reading file (e.g., JSON parsing error)
+                console.error(`Error reading JSON file in ${dirPath}: ${readFileError.message}`);
+                }
+            }
+        }
 
-    //Prepare and store additional article information
-    const datajson = {
-        "title": articleTitle,
-        "date": new Date(),
-        "topics": randomTopicObject.keyword,
-        "image": await lib.getStockImage(randomTopicObject.keyword) || ""
+        res.render('home', { articles });
     }
-    lib.storeVariableInSubdirectory(JSON.stringify(datajson), dirSafeTitle, 'articledata.json');
-}
+    catch (error) {
+        // Handle other errors (e.g., readdir error)
+        console.error(`Error reading articles directory: ${error.message}`);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
-async function generateWithLLM(prompt, penalty){
-    penalty = penalty || 1;
-    var currentOutput = "";
-    await llama.createCompletion({
-        nThreads: 4,
-        nTokPredict: 2048,
-        topK: 40,
-        topP: 0.1,
-        temp: 0.7,
-        repeatPenalty: penalty,
-        prompt,
-    }, (response) => {
-        currentOutput += response.token;
-        process.stdout.write(response.token);
-    });
-    return currentOutput;
-}
+//Article page from id
+app.get('/articles/:id', async (req, res) => {
+    const id = req.params.id;
+    const filePath = path.join(articlesFolder, `${id}/article.md`);//Get file path of the article from id
+
+    try {
+        const data = await fs.promises.readFile(filePath, 'utf8');
+        const htmlContent = md.render(data);//Convert MD to html
+
+        //Render the 'article' template and pass the HTML content as a variable
+        res.render('article', { content: htmlContent });
+    } catch (err) {
+        console.error(err);
+
+        //Erorr handling
+        if (err.code === 'ENOENT') {
+            res.render('404', { url: req.url });//Send them to 404 page
+        }
+        else {
+            res.status(500).send('Internal Server Error');
+        }
+    }
+});
+
+//Other 404 Handler
+app.use(function(req, res, next) {
+    res.status(404);
+
+    //HTML Response
+    if (req.accepts('html')) {
+        res.render('404', { url: req.url });
+        return;
+    }
+
+    //JSON Response
+    if (req.accepts('json')) {
+        res.json({ error: '404: Not found' });
+        return;
+    }
   
-run();
+    //Plain Text Response
+    res.type('txt').send('404: Not found');
+});
+
+//Start the server
+app.listen(port, () => {
+    console.log(`Markdown server is running at http://localhost:${port}`);
+});
+
+//Enable Generator
+//setInterval(generator.run, 5 * 60 * 1000);

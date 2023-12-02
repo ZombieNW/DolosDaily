@@ -4,7 +4,10 @@
   "description": "A fake news generator powered by AI.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.mjs"
+    "startgen": "node generator/index.mjs",
+    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.mjs --ext *",
+    "tailwind": "npx tailwindcss -i ./views/input.css -o ./public/output.css --watch"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,16 @@
     "@llama-node/llama-cpp": "^0.1.6",
     "@sl-code-lords/image-library": "^1.0.0",
     "compromise": "^14.10.1",
-    "llama-node": "^0.1.6"
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "llama-node": "^0.1.6",
+    "markdown-it": "^13.0.2"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "nodemon": "^3.0.2",
+    "tailwindcss": "^3.3.5"
   }
 }

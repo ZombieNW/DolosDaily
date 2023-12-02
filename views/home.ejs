@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="">
+    <div>
+        <h1 class="text-6xl">Home</h1>
+        <% for(var i=0; i < articles.length; i++) { %>
+            <a href="./articles/<%= articles[i].directory %>" class="article">
+                <img src="<%= articles[i].data.image %>" alt="<%= articles[i].data.title %>">
+                <h1><%= articles[i].data.title %></h1>
+                <h2><%= new Date(articles[i].data.date).toLocaleDateString("en-US") %></h2>
+            </a>
+         <% } %>
+    </div>
+</body>
+</html>
