@@ -19,7 +19,7 @@ export function makeDirectorySafeString(input) {
 
 // Store a variable in the subdirectory
 export function storeVariableInSubdirectory(variable, subdirectory, filename) {
-    const directoryPath = path.join(process.cwd(), 'articles', subdirectory);
+    const directoryPath = path.join(process.cwd(), 'public/articledata', subdirectory);
     const filePath = path.join(directoryPath, filename);
 
     // Create the subdirectory if it doesn't exist

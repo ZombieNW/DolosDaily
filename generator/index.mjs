@@ -1,5 +1,5 @@
 //Libs
-import * as lib from '../lib/lib.mjs';
+import * as lib from './lib.mjs';
 import fs from "fs";
 import path from "path";
 import { LLM } from "llama-node";
@@ -58,7 +58,7 @@ export async function run(){
         "topics": randomTopicObject.keyword,
         "image": await lib.getStockImage(randomTopicObject.keyword) || ""
     }
-    lib.storeVariableInSubdirectory(JSON.stringify(datajson), dirSafeTitle, 'articledata.json');
+    lib.storeVariableInSubdirectory(JSON.stringify(datajson), 'dirSafeTitle', 'articledata.json');
 }
 
 async function generateWithLLM(prompt, penalty){
