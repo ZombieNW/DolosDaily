@@ -12,7 +12,7 @@
     let articleData = {
         "title": "Loading...",
         "contents": "Loading...",
-        "date": "Loading...",
+        "date": new Date(),
         "image": ""
     }
 
@@ -34,7 +34,7 @@
             .then(response => response.json())
             .then(jsonData => {
                 articleData.title = jsonData.title;
-                articleData.date = new Date(jsonData.date).toLocaleTimeString();
+                articleData.date = new Date(jsonData.date).toLocaleDateString();
                 articleData.image = jsonData.image;
                 fetch(`/articledata/${data.id}/article.md`)
                     .then(response => response.text())
@@ -67,9 +67,9 @@
     <div class="w-3/4">
         <div class="w-full inline-block">
             <h1 class="text-6xl">{articleData.title || "Unknown Title"}</h1>
-            <p class="text-gray-700">{articleData.date || "Unknown Date"}</p>
+            <p class="text-gray-700">{articleData.date}</p>
             <p class="text-gray-700">By Dolos Daily</p>
-            <img src="{articleData.image || "https://placehold.co/1920x1080"}" class="h-[32rem] float-left w-full rounded-sm object-cover" alt="{articleData.title || "Unknown Title"}">
+            <img src="{articleData.image || "./placeholder.jpg"}" class="h-[32rem] float-left w-full rounded-sm object-cover" alt="{articleData.title || "Unknown Title"}">
             <hr class="w-full my-4">
         </div>
         

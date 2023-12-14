@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs/promises';
+import * as generator from '../generator/index.mjs';
 
 //Consts
 const app = express();
@@ -36,3 +37,8 @@ app.get('/articlelist', async (req, res) => {
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
+
+if(process.argv[2] != "--nogen"){
+  setInterval(generator.run, 5 * 60 * 1000);
+  generator.run();
+}

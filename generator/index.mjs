@@ -5,7 +5,7 @@ import path from "path";
 import { LLM } from "llama-node";
 import { LLamaCpp } from "llama-node/dist/llm/llama-cpp.js";
 const llama = new LLM(LLamaCpp);
-const model = path.resolve(process.cwd(), "models/airoboros-13b-gpt4.ggmlv3.q4_0.bin");
+const model = path.resolve(process.cwd(), "generator/models/airoboros-13b-gpt4.ggmlv3.q4_0.bin");
 
 export async function run(){
     //Setup llama
