@@ -1,5 +1,5 @@
 //Libs
-import * as lib from './lib.mjs';
+import * as lib from "./lib.mjs";
 import fs from "fs";
 import path from "path";
 import { LLM } from "llama-node";
@@ -7,7 +7,7 @@ import { LLamaCpp } from "llama-node/dist/llm/llama-cpp.js";
 const llama = new LLM(LLamaCpp);
 const model = path.resolve(process.cwd(), "generator/models/airoboros-13b-gpt4.ggmlv3.q4_0.bin");
 
-export async function run(){
+export async function run() {
     //Setup llama
     await llama.load({
         modelPath: model,
@@ -43,38 +43,49 @@ export async function run(){
     Title:`);
 
     //Get the title of the article
-    const articleSplit = generatedArticle.split('\n\n');//Split by 2 newlines
-    const articleTitle = articleSplit[0].replaceAll("\n", "").replaceAll("\"", "").replaceAll("\\\"", "").trim();//Filter out the title
-    const dirSafeTitle = lib.makeDirectorySafeString(articleTitle);//Generate a directory safe title for the article
+    const articleSplit = generatedArticle.split("\n\n"); //Split by 2 newlines
+    const articleTitle = articleSplit[0].replaceAll("\n", "").replaceAll('"', "").replaceAll('\\"', "").trim(); //Filter out the title
+    const dirSafeTitle = lib.makeDirectorySafeString(articleTitle); //Generate a directory safe title for the article
 
     //Prepare and store article content
-    const articleContent = generatedArticle.replaceAll("<end>", "").replaceAll("Article:\n", "").replaceAll(articleSplit[0], "").replaceAll("John", lib.getRandomItemFromFile("generator/firstNames.json")).replaceAll("Jane", lib.getRandomItemFromFile("generator/firstNames.json")).replaceAll("Smith", lib.getRandomItemFromFile("generator/lastNames.json")).replaceAll("Doe", lib.getRandomItemFromFile("generator/lastNames.json")).trim();
-    lib.storeVariableInSubdirectory(articleContent, dirSafeTitle, 'article.md');
+    const articleContent = generatedArticle
+        .replaceAll("<end>", "")
+        .replaceAll("Article:\n", "")
+        .replaceAll(articleSplit[0], "")
+        .replaceAll("John", lib.getRandomItemFromFile("generator/firstNames.json"))
+        .replaceAll("Jane", lib.getRandomItemFromFile("generator/firstNames.json"))
+        .replaceAll("Smith", lib.getRandomItemFromFile("generator/lastNames.json"))
+        .replaceAll("Doe", lib.getRandomItemFromFile("generator/lastNames.json"))
+        .trim();
+    lib.storeVariableInSubdirectory(articleContent, dirSafeTitle, "article.md");
 
     //Prepare and store additional article information
     const datajson = {
-        "title": articleTitle,
-        "date": new Date(),
-        "topics": randomTopicObject.keyword,
-        "image": await lib.getStockImage(randomTopicObject.keyword) || ""
-    }
-    lib.storeVariableInSubdirectory(JSON.stringify(datajson), 'dirSafeTitle', 'articledata.json');
+        title: articleTitle,
+        date: new Date(),
+        topics: randomTopicObject.keyword,
+        image: (await lib.getStockImage(randomTopicObject.keyword)) || ""
+    };
+    lib.storeVariableInSubdirectory(JSON.stringify(datajson), dirSafeTitle, "articledata.json");
 }
 
-async function generateWithLLM(prompt, penalty){
+async function generateWithLLM(prompt, penalty) {
     penalty = penalty || 1;
     var currentOutput = "";
-    await llama.createCompletion({
-        nThreads: 4,
-        nTokPredict: 2048,
-        topK: 40,
-        topP: 0.1,
-        temp: 0.7,
-        repeatPenalty: penalty,
-        prompt,
-    }, (response) => {
-        currentOutput += response.token;
-        process.stdout.write(response.token);
-    });
+    await llama.createCompletion(
+        {
+            nThreads: 4,
+            nTokPredict: 2048,
+            topK: 40,
+            topP: 0.1,
+            temp: 0.7,
+            repeatPenalty: penalty,
+            prompt
+        },
+        (response) => {
+            currentOutput += response.token;
+            process.stdout.write(response.token);
+        }
+    );
     return currentOutput;
 }
