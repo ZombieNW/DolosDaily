@@ -9,7 +9,6 @@
         fetch(window.location.protocol + "//" + window.location.hostname + ":" + backendPort + "/articlelist")
             .then(async data => {
                 articleList = await data.json();
-                console.log(articleList);
             })
     });
 </script>
