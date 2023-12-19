@@ -5,39 +5,14 @@
     const backendPort = 3000;//todo change this
     let articleList = {};
 
-    let today = new Date();
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const dayOfWeek = days[today.getDay()];
-    const dayOfMonth = today.getDate();
-    const month = months[today.getMonth()];
-    const year = today.getFullYear();
-
     onMount(async () => {
-        const interval = setInterval(() => {
-            today = new Date();
-        }, 1000);
-
         fetch(window.location.protocol + "//" + window.location.hostname + ":" + backendPort + "/articlelist")
             .then(async data => {
                 articleList = await data.json();
             })
-
-        // Clean up the interval when the component is destroyed
-        return () => clearInterval(interval);
     });
 </script>
 
-<div class="h-12 flex w-full items-center px-4">
-    <h1 class="font-bold">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</h1>
-    <div class="flex-1">
-        <h1 class="font-bold float-right">{today.toLocaleTimeString()}</h1>
-    </div>
-</div>
-<div class="flex w-full justify-center">
-    <img src="./logo.png" class="h-24 -mt-8" alt="Logo">
-</div>
-<hr class="mx-48 my-4">
 <div class="flex justify-center">
     <div class="w-3/4">
         {#if articleList[Object.keys(articleList)[0]]}

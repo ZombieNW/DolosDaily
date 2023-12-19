@@ -1,14 +1,6 @@
 <script>
     import {onMount} from 'svelte';
 
-    let today = new Date();
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const dayOfWeek = days[today.getDay()];
-    const dayOfMonth = today.getDate();
-    const month = months[today.getMonth()];
-    const year = today.getFullYear();
-
     let articleData = {
         "title": "Loading...",
         "contents": "Loading...",
@@ -17,10 +9,6 @@
     }
 
     onMount(() => {
-        const interval = setInterval(() => {
-            today = new Date();
-        }, 1000);
-
         function getUrlParam(paramName) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(paramName);
@@ -48,21 +36,9 @@
             .catch(error => {
                 console.error(error);
             });
-
-        return () => clearInterval(interval);
     });
 </script>
 
-<div class="h-12 flex w-full items-center px-4">
-    <h1 class="font-bold">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</h1>
-    <div class="flex-1">
-        <h1 class="font-bold float-right">{today.toLocaleTimeString()}</h1>
-    </div>
-</div>
-<a href="../" class="flex w-full justify-center">
-    <img src="../logo.png" class="h-24 -mt-8" alt="Logo">
-</a>
-<hr class="mx-48 my-4">
 <div class="flex justify-center">
     <div class="w-3/4">
         <div class="w-full inline-block">
