@@ -63,7 +63,7 @@ export async function run() {
         .replaceAll("[News Outlet]", "Dolos Daily News")
         .trim();
 
-    articleTitle = articleContent.replaceAll("John", johnSub).replaceAll("Jane", janeSub).replaceAll("Smith", smithSub).replaceAll("Doe", doeSub);
+    articleTitle = articleTitle.replaceAll("John", johnSub).replaceAll("Jane", janeSub).replaceAll("Smith", smithSub).replaceAll("Doe", doeSub);
 
     const dirSafeTitle = lib.makeDirectorySafeString(articleTitle); //Generate a directory safe title for the article
 
