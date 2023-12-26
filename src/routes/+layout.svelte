@@ -21,9 +21,9 @@
 </script>
 
 <div class="h-12 flex w-full items-center px-4">
-    <h1 class="font-bold">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</h1>
+    <p class="font-bold">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</p>
     <div class="flex-1">
-        <h1 class="font-bold float-right">{today.toLocaleTimeString()}</h1>
+        <p class="font-bold float-right">{today.toLocaleTimeString()}</p>
     </div>
 </div>
 <div class="flex w-full justify-center">
@@ -31,7 +31,7 @@
         <img src="./logo.png" class="md:h-24 md:-mt-8" alt="Logo">
     </a>
 </div>
-<hr class="mx-48 my-4">
+<hr class="mx-60 my-4 border-gray-400">
 
 <slot />
 
@@ -57,7 +57,7 @@
               </div>
           </div>
       </div>
-      <hr class="my-6 sm:mx-auto border-gray-700 lg:my-8" />
+      <hr class="my-6 sm:mx-auto border-gray-400 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm sm:text-center text-gray-400">© 2023 <a href="https://zombienw.com/" class="hover:underline">ZombieNW</a>.
           </span>
