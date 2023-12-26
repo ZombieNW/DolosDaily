@@ -35,6 +35,9 @@
 
 <slot />
 
+<div class="text-center w-full">
+    <a class="hover:bg-gray-900 hover:text-white mx-auto p-3 my-3 w-96 text-sm block border rounded-lg border-gray-500 bg-gray-50" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Subscribe to Daily Dolos</a>
+</div>
 <footer class="bg-gray-900 w-full">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
@@ -48,7 +51,7 @@
                   <h2 class="mb-6 text-sm font-semibolduppercase text-white">Links</h2>
                   <ul class="text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://example.com/" class="hover:underline">Video Explination</a>
+                          <a href="https://example.com/" class="hover:underline">Video Explanation</a>
                       </li>
                       <li>
                           <a href="https://example.com/" class="hover:underline">Source Code</a>
