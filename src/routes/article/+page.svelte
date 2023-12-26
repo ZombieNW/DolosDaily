@@ -1,6 +1,8 @@
 <script>
     import {onMount} from 'svelte';
 
+    const backendPort = 3000;//todo change this
+
     let articleData = {
         "title": "Loading...",
         "contents": "Loading...",
@@ -18,13 +20,13 @@
             id: getUrlParam('a')
         };
 
-        fetch(`/articledata/${data.id}/articledata.json`)
+        fetch(window.location.protocol + "//" + window.location.hostname + ":" + backendPort + `/articledata/${data.id}/articledata.json`)
             .then(response => response.json())
             .then(jsonData => {
                 articleData.title = jsonData.title;
                 articleData.date = new Date(jsonData.date).toLocaleDateString();
                 articleData.image = jsonData.image;
-                fetch(`/articledata/${data.id}/article.md`)
+                fetch(window.location.protocol + "//" + window.location.hostname + ":" + backendPort + `/articledata/${data.id}/article.md`)
                     .then(response => response.text())
                     .then(markdownData => {
                         articleData.contents = markdownData;

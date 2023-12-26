@@ -44,19 +44,29 @@ export async function run() {
 
     //Get the title of the article
     const articleSplit = generatedArticle.split("\n\n"); //Split by 2 newlines
-    const articleTitle = articleSplit[0].replaceAll("\n", "").replaceAll('"', "").replaceAll('\\"', "").trim(); //Filter out the title
-    const dirSafeTitle = lib.makeDirectorySafeString(articleTitle); //Generate a directory safe title for the article
+    let articleTitle = articleSplit[0].replaceAll("\n", "").replaceAll('"', "").replaceAll('\\"', "").trim(); //Filter out the title
 
     //Prepare and store article content
+    const johnSub = lib.getRandomItemFromFile("generator/firstNames.json");
+    const janeSub = lib.getRandomItemFromFile("generator/firstNames.json");
+    const smithSub = lib.getRandomItemFromFile("generator/lastNames.json");
+    const doeSub = lib.getRandomItemFromFile("generator/lastNames.json");
+
     const articleContent = generatedArticle
         .replaceAll("<end>", "")
         .replaceAll("Article:\n", "")
         .replaceAll(articleSplit[0], "")
-        .replaceAll("John", lib.getRandomItemFromFile("generator/firstNames.json"))
-        .replaceAll("Jane", lib.getRandomItemFromFile("generator/firstNames.json"))
-        .replaceAll("Smith", lib.getRandomItemFromFile("generator/lastNames.json"))
-        .replaceAll("Doe", lib.getRandomItemFromFile("generator/lastNames.json"))
+        .replaceAll("John", johnSub)
+        .replaceAll("Jane", janeSub)
+        .replaceAll("Smith", smithSub)
+        .replaceAll("Doe", doeSub)
+        .replaceAll("[News Outlet]", "Dolos Daily News")
         .trim();
+
+    articleTitle = articleContent.replaceAll("John", johnSub).replaceAll("Jane", janeSub).replaceAll("Smith", smithSub).replaceAll("Doe", doeSub);
+
+    const dirSafeTitle = lib.makeDirectorySafeString(articleTitle); //Generate a directory safe title for the article
+
     lib.storeVariableInSubdirectory(articleContent, dirSafeTitle, "article.md");
 
     //Prepare and store additional article information

@@ -19,8 +19,8 @@ app.get("/articlelist", async (req, res) => {
     const articleList = async () => {
         //Get dirs & sort by date
         const articlesPath = path.join(__dirname, "../public", "articledata");
-        if (!fs.existsSync(articlesPath)) {
-            return res.status(500).send({ error: "Articles directory not found" });
+        if (!(await fileExists(articlesPath))) {
+            throw "Articles directory not found";
         }
         const dirsList = await fs.readdir(articlesPath);
 
@@ -60,4 +60,16 @@ app.listen(3000, () => {
 if (process.argv[2] != "--nogen") {
     setInterval(generator.run, 5 * 60 * 1000);
     generator.run();
+}
+
+async function fileExists(path) {
+    try {
+        await fs.access(path);
+        return true;
+    } catch (error) {
+        if (error.code === "ENOENT") {
+            return false;
+        }
+        throw error;
+    }
 }
