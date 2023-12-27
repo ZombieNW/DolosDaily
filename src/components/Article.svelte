@@ -5,9 +5,9 @@
     if(!image) image = "./placeholder.jpg";
 </script>
 
-<div class="w-80 h-72 float-left my-2">
+<div class="w-[23.5rem] h-72 float-left my-2">
     <div class="block">
-        <img src="{image}" class="h-40 w-full rounded-sm object-cover" alt="Placeholder">
+        <img src="{image}" class="h-48 w-full rounded-sm object-cover" alt="Placeholder">
     </div>
     <div class="block">
         <h1 class="text-2xl leading-7 line-clamp-3 text-ellipsis">{title}</h1>

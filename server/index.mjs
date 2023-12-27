@@ -37,6 +37,15 @@ app.get("/articlelist", async (req, res) => {
         }
         try {
             dirsData = Object.fromEntries(Object.entries(dirsData).sort((a, b) => new Date(b[1].date) - new Date(a[1].date))); //Reconstruct; Sort by date
+
+            const filePath = path.join(__dirname, "../public/articledata", Object.keys(dirsData)[0], "article.md");
+            try {
+                const fileData = await fs.readFile(filePath, "utf8");
+                dirsData[Object.keys(dirsData)[0]].content = fileData;
+                console.log(dirsData[Object.keys(dirsData)[0]]);
+            } catch (error) {
+                console.log("Error reading file: " + filePath);
+            }
         } catch (error) {
             console.log("Error sorting dates, parsing error may exist: " + error);
         }

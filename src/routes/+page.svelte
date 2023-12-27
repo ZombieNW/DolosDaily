@@ -29,7 +29,7 @@
                 }
 
                 setTimeout(function(){
-                    showModal = true;
+                    //showModal = true;
                 }, Math.floor(Math.random() * (2000 - 500) + 500));
                 
         })
@@ -37,6 +37,83 @@
 </script>
 
 <title>Dolos Daily - Breaking News that Matters Most</title>
+
+<div class="w-full h-24 md:h-16 flex justify-center">
+    <div class="bg-red-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/></svg>
+        </div>
+        <div>
+            <h1>Disney</h1>
+            <p class="text-red-900">{((Math.random() * ((0) - (-5000))) - 5000).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((0) - (-10))) + -10).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-green-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/></svg>
+        </div>
+        <div>
+            <h1>Lockheed Martin</h1>
+            <p class="text-green-900">{((Math.random() * ((5000) - (0))) + 0).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((10) - (0))) + 0).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-green-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/></svg>
+        </div>
+        <div>
+            <h1>Sturm Ruger</h1>
+            <p class="text-green-900">{((Math.random() * ((5000) - (0))) + 0).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((10) - (0))) + 0).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-red-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/></svg>
+        </div>
+        <div>
+            <h1>Khan Academy</h1>
+            <p class="text-red-900">{((Math.random() * ((0) - (-5000))) - 5000).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((0) - (-10))) + -10).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-green-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/></svg>
+        </div>
+        <div>
+            <h1><s>Twitter</s> X</h1>
+            <p class="text-green-900">{((Math.random() * ((5000) - (0))) + 0).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((10) - (0))) + 0).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-green-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/></svg>
+        </div>
+        <div>
+            <h1>Dogecoin</h1>
+            <p class="text-green-900">420.00 <span class="font-bold">6.9%</span></p>
+        </div>
+    </div>
+    <div class="bg-red-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/></svg>
+        </div>
+        <div>
+            <h1>TikTok</h1>
+            <p class="text-red-900">{((Math.random() * ((0) - (-5000))) - 5000).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((0) - (-10))) + -10).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+    <div class="bg-red-100 w-48 flex justify-center items-center mx-2">
+        <div class="pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM127 281c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l71 71L232 136c0-13.3 10.7-24 24-24s24 10.7 24 24l0 182.1 71-71c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 393c-9.4 9.4-24.6 9.4-33.9 0L127 281z"/></svg>
+        </div>
+        <div>
+            <h1>ZombieNW</h1>
+            <p class="text-red-900">{((Math.random() * ((0) - (-5000))) - 5000).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((0) - (-10))) + -10).toString().substring(0,4)}%</span></p>
+        </div>
+    </div>
+</div>
+
+<hr class="mx-60 my-4 border-gray-400">
 
 <div class="flex justify-center">
     <div class="w-3/4">
@@ -47,7 +124,8 @@
                     <a href="/article?a={Object.keys(articleList)[0]}">
                         <h1 class="text-5xl line-clamp-4 text-ellipsis">{articleList[Object.keys(articleList)[0]].title}</h1>
                     </a>
-                    <p class="text-gray-700">{new Date(articleList[Object.keys(articleList)[0]].date).toLocaleDateString()}</p>
+                    <p class="text-gray-700">{new Date(articleList[Object.keys(articleList)[0]].date).toLocaleDateString()}</p><br>
+                    <p class="line-clamp-4 text-ellipsis">{articleList[Object.keys(articleList)[0]].content}</p>
                 </div>
                 <div class="flex-1">
                     <img src="{articleList[Object.keys(articleList)[0]].image || "./placeholder.jpg"}" class="h-full float-right w-[32rem] rounded-sm object-cover" alt="Placeholder">
@@ -63,7 +141,7 @@
                     </a>
                 {/each}
             </div>
-            <div class="grid grid-cols-1 justify-evenly justify-items-center md:border-l-gray-400 border-[1px] md:pl-4 border-x-transparent border-y-transparent">
+            <div class="grid grid-cols-1 justify-evenly justify-items-center md:border-l-gray-400 border-[1px] md:pl-2 ml-2 border-x-transparent border-y-transparent">
                 {#each Object.keys(sideBarArticles) as item}
                     <a href="/article?a={item}">
                         <SmallArticle title={sideBarArticles[item].title} timestamp={sideBarArticles[item].date} image={sideBarArticles[item].image}/>

@@ -10,20 +10,45 @@
     const month = months[today.getMonth()];
     const year = today.getFullYear();
 
+    let adUrl1 = `/ads/${Math.floor(Math.random() * (6 - 1) + 1)}.png`;
+    let adUrl2 = `/ads/${Math.floor(Math.random() * (6 - 1) + 1)}.png`;
+
+    const generateUniqueAd = () => {
+        const randomIndex = Math.floor(Math.random() * (6 - 1) + 1);
+        return `/ads/${randomIndex}.png`;
+    };
+
+    const resetAds = () => {
+        adUrl2 = generateUniqueAd();    
+        do {
+            adUrl1 = generateUniqueAd();
+        } while (adUrl1 === adUrl2);
+            
+    };
+
     onMount(async () => {
-        const interval = setInterval(() => {
+        const timeInterval = setInterval(() => {
             today = new Date();
         }, 1000);
 
+        const adInterval = setInterval(resetAds, 15000);
+        resetAds();
+
         // Clean up the interval when the component is destroyed
-        return () => clearInterval(interval);
+        return () => clearInterval(timeInterval);
+        return () => clearInterval(adInterval);
     });
 </script>
 
+<div class="fixed w-full h-screen -z-10">
+    <img src="{adUrl1}" alt="Advertisement" class="pt-64 px-6 top-0 left-0 float-left">
+    <img src="{adUrl2}" alt="Advertisement" class="pt-64 px-6 top-0 right-0 float-right">
+</div>
+
 <div class="h-12 flex w-full items-center px-4">
-    <p class="font-bold">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</p>
+    <p class="font-bold text-md md:text-3xl md:pt-16">{dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year}</p>
     <div class="flex-1">
-        <p class="font-bold float-right">{today.toLocaleTimeString()}</p>
+        <p class="font-bold float-right md:text-3xl md:pt-16">{today.toLocaleTimeString()}</p>
     </div>
 </div>
 <div class="flex w-full justify-center">
@@ -38,8 +63,8 @@
 <div class="text-center w-full">
     <a class="hover:bg-gray-900 hover:text-white mx-auto p-3 my-3 w-96 text-sm block border rounded-lg border-gray-500 bg-gray-50" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Subscribe to Daily Dolos</a>
 </div>
-<footer class="bg-gray-900 w-full">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+<footer class="bg-gray-900 w-full -z-50">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 -z-50">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
               <a href="/" class="flex items-center">
