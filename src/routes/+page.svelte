@@ -125,7 +125,7 @@
                         <h1 class="text-5xl line-clamp-4 text-ellipsis">{articleList[Object.keys(articleList)[0]].title}</h1>
                     </a>
                     <p class="text-gray-700">{new Date(articleList[Object.keys(articleList)[0]].date).toLocaleDateString()}</p><br>
-                    <p class="line-clamp-4 text-ellipsis">{articleList[Object.keys(articleList)[0]].content}</p>
+                    <p class="line-clamp-4 text-ellipsis hidden md:block">{articleList[Object.keys(articleList)[0]].content}</p>
                 </div>
                 <div class="flex-1">
                     <img src="{articleList[Object.keys(articleList)[0]].image || "./placeholder.jpg"}" class="h-full float-right w-[32rem] rounded-sm object-cover" alt="Placeholder">

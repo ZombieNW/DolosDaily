@@ -40,7 +40,7 @@
     });
 </script>
 
-<div class="fixed w-full h-screen -z-10">
+<div class="fixed w-full h-screen -z-10 hidden md:block">
     <img src="{adUrl1}" alt="Advertisement" class="pt-64 px-6 top-0 left-0 float-left">
     <img src="{adUrl2}" alt="Advertisement" class="pt-64 px-6 top-0 right-0 float-right">
 </div>
