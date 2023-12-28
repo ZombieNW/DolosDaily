@@ -3,3 +3,4 @@ node_modules
 public/**
 *.bin
 /.svelte-kit
+public_prem

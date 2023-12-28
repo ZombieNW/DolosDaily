@@ -29,7 +29,7 @@
                 }
 
                 setTimeout(function(){
-                    //showModal = true;
+                    showModal = true;
                 }, Math.floor(Math.random() * (2000 - 500) + 500));
                 
         })
@@ -80,7 +80,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM385 231c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-71-71V376c0 13.3-10.7 24-24 24s-24-10.7-24-24V193.9l-71 71c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L239 119c9.4-9.4 24.6-9.4 33.9 0L385 231z"/></svg>
         </div>
         <div>
-            <h1><s>Twitter</s> X</h1>
+            <h1><s>Twitter</s> "𝕏"</h1>
             <p class="text-green-900">{((Math.random() * ((5000) - (0))) + 0).toString().substring(0,7)} <span class="font-bold">{((Math.random() * ((10) - (0))) + 0).toString().substring(0,4)}%</span></p>
         </div>
     </div>
@@ -125,7 +125,7 @@
                         <h1 class="text-5xl line-clamp-4 text-ellipsis">{articleList[Object.keys(articleList)[0]].title}</h1>
                     </a>
                     <p class="text-gray-700">{new Date(articleList[Object.keys(articleList)[0]].date).toLocaleDateString()}</p><br>
-                    <p class="line-clamp-4 text-ellipsis hidden md:block">{articleList[Object.keys(articleList)[0]].content}</p>
+                    <p class="line-clamp-4 text-ellipsis invisible md:visible">{articleList[Object.keys(articleList)[0]].content}</p>
                 </div>
                 <div class="flex-1">
                     <img src="{articleList[Object.keys(articleList)[0]].image || "./placeholder.jpg"}" class="h-full float-right w-[32rem] rounded-sm object-cover" alt="Placeholder">
