@@ -1,38 +1,27 @@
-# create-svelte
+# The Dolos Daily
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+### _Fake News, Streamlined_
 
-## Creating a project
+![Languages](https://badgen.net/badge/language/Node.JS/green) ![Platform](https://badgen.net/badge/language/Svelte/red) ![License](https://badgen.net/badge/language/MIT/red)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## What?
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+This website generates news articles using [LLama-Node](https://llama-node.vercel.app/) and presents them on a front-end. I'm making a video about it that will release some time in February.
 
 ## Building
 
-To create a production version of your app:
+Install [Node.JS](https://nodejs.org/en/). Download a LLama-Node compatible model (I used [airoboros-13b-gpt4.ggmlv3.q4_0.bin](https://huggingface.co/TheBloke/airoboros-13b-gpt4-GGML)) and place it in the /models directory (change /generator/index.mjs if using a different file). Then run the following commands.
 
-```bash
+```sh
+npm install
 npm run build
+npm run start
 ```
 
-You can preview the production build with `npm run preview`.
+## Inspiration
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+This project is vaguelly inspired by [this article](https://blog.devgenius.io/how-to-generate-html-content-with-ai-using-llama-node-and-express-e1b1e0e1a55b) by Julian Bilcke. The execution is wildly different from how it's done in the article but it would feel wrong not giving it credit for the idea.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
